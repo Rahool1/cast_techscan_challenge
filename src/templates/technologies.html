@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-sm-8">
+		<div class="row">
+			<div class="col-sm-12" ng-repeat="tech in technologyList">
+				<rd-widget ui-sref="admin.technolgy({code:tech.code})">
+					<rd-widget-body>
+						<div class="pull-left" style="margin-right: 30px;">
+							<!-- <i class="fa fa-users"></i> -->
+							<img ng-src="{{tech.logo}}" style="width:100px;height:100px" alt="">
+						</div>
+						<div class="title">{{tech.name}}</div>
+					</rd-widget-body>
+				</rd-widget>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<rd-widget>
+			<rd-widget-body>
+				<h4>Languages</h4>
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr ng-repeat="tech in technologyList" style="cursor:pointer;cursor:hand;"  ui-sref="admin.technolgy({code:tech.code})">
+								<td>
+									{{tech.name}}
+								</td>
+								<th>
+									{{tech.total || '--'}}
+								</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>

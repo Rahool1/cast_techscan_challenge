@@ -1,0 +1,89 @@
+<div class="row" style="background-color:#FFF">
+	<div class="col-sm-3" style="margin-top:15px">
+		<img ng-src="{{userBO.avatar_url || 'img/dummy.png'}}" alt="" style="height:auto;width:100%;border-radius: 6px">
+		<hr>
+		<h3>{{userBO.name}}</h3>
+		<p style="font-size:1.2em">{{userBO.login}}</p>
+		<p>{{userBO.bio}}</p>
+		<h4 ng-if="userBO.location"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{userBO.location}}</h4>
+	</div>
+	<div class="col-sm-9" style="padding:15px;">
+		<uib-tabset active="activeJustified" justified="true">
+			<uib-tab index="0" heading="Overview">
+				<div class="row" style="margin-top:15px;">
+					<div class="col-sm-6" ng-repeat="repo in userRepos | limitTo:6">
+						<div style="border: 1px solid #EEE;min-height: 140px;max-height: 140px;border-radius: 8px;padding: 15px;">
+						<p style="font-size:1.2em;"><a>{{repo.name}}</a></p>
+						<p style="font-size: 0.8em;">{{repo.description | limitTo: 80}} {{repo.description.length > 80 ? '...' : ''}} &nbsp;</p>
+						<p style="padding-top: 20px;">
+						<span ng-if="repo.language"><span style="color:green"><i class="fa fa-circle" aria-hidden="true"></span></i>&nbsp;{{repo.language}} </span>
+						<span ng-if="repo.stargazers_count"><i class="fa fa-sm fa-star" aria-hidden="true"></i>&nbsp;{{repo.stargazers_count}}</span>
+						<span ng-if="repo.forks_count"><i class="fa fa-sm fa-code-fork" aria-hidden="true"></i>&nbsp;{{repo.forks_count}}</span>
+						</p>
+						</div>
+					</div>
+				</div>
+			</uib-tab>
+			<uib-tab index="1" select="tabChange('REPO')">
+				<uib-tab-heading>
+					Repositories <span class='badge'>{{userBO.public_repos || '0'}}</span>
+				</uib-tab-heading>
+
+				<div class="row" style="margin-top:15px;">
+					<div class="col-sm-12" ng-repeat="repo in userRepos">
+						<div style="border-top: 1px solid #EEE;min-height: 140px;max-height: 140px;padding: 15px;">
+						<p style="font-size:1.2em;"><a>{{repo.name}}</a></p>
+						<p style="font-size: 0.8em;">{{repo.description | limitTo: 80}} {{repo.description.length > 80 ? '...' : ''}} &nbsp;</p>
+						<p style="padding-top: 20px;">
+						<span ng-if="repo.language"><span style="color:green"><i class="fa fa-circle" aria-hidden="true"></span></i>&nbsp;{{repo.language}} </span>
+						<span ng-if="repo.stargazers_count"><i class="fa fa-sm fa-star" aria-hidden="true"></i>&nbsp;{{repo.stargazers_count}}</span>
+						<span ng-if="repo.forks_count"> <i class="fa fa-sm fa-code-fork" aria-hidden="true"></i>&nbsp;{{repo.forks_count}}</span>
+						</p>
+						</div>
+					</div>
+				</div>
+
+			</uib-tab>
+			<uib-tab index="3" select="tabChange('FOLLOWERS')">
+				<uib-tab-heading>
+					Followers <span class='badge'>{{userBO.followers || '0'}}</span>
+				</uib-tab-heading>
+				<div class="row" style="margin-top:15px;">
+					<div class="col-sma-12">
+						<div class="row" ng-repeat="follower in userFollowers"  style="border-top: 1px solid #EEE;min-height: 80px;max-height: 80px;padding: 15px;">
+							<div class="col-sm-2">
+								<img ng-src="{{follower.avatar_url || 'img/dummy.png'}}" style="width:50px;height:auto;" alt="">
+							</div>
+							<div class="col-sm-8">
+								<p>{{follower.login}}</p>
+							</div>
+							<div class="col-sm-2">
+								<button class="btn btn-default"> Follow </button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</uib-tab>
+			<uib-tab index="4" select="tabChange('FOLLOWING')">
+				<uib-tab-heading>
+					Following <span class='badge'>{{userBO.following || '0'}}</span>
+				</uib-tab-heading>
+				<div class="row" style="margin-top:15px;">
+					<div class="col-sma-12">
+						<div class="row" ng-repeat="follower in userFollowing"  style="border-top: 1px solid #EEE;min-height: 80px;max-height: 80px;padding: 15px;">
+							<div class="col-sm-2">
+								<img ng-src="{{follower.avatar_url || 'img/dummy.png'}}" style="width:50px;height:auto;" alt="">
+							</div>
+							<div class="col-sm-8">
+								<p>{{follower.login}}</p>
+							</div>
+							<div class="col-sm-2">
+								<button class="btn btn-default"> Follow </button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</uib-tab>
+		</uib-tabset>
+	</div>
+</div>

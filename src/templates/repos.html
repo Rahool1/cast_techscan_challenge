@@ -1,0 +1,96 @@
+<div class="row">
+	<div class="col-sm-4" style="background-color:#FFF;padding:8px;">
+		<form ng-submit="valueEnter(search)">
+			<div id="custom-search-input">
+				<div class="input-group col-md-12">
+					<input type="text" ng-model="search" class="search-query form-control" placeholder="Search"/>
+					<span class="input-group-btn">
+						<button class="btn btn-danger" type="button" type="submit">
+							<span class=" glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="col-sm-8">
+		<rd-widget>
+			<rd-widget-body>
+				Repositories <span class="badge" ng-show="((repoBO.total_count / Math.pow(10, 3)).toFixed(1)) > 0.0">{{ (repoBO.total_count / Math.pow(10, 3)).toFixed(3)+"k"}}</span>
+				<span class="badge" ng-show="((repoBO.total_count / Math.pow(10, 3)).toFixed(1)) == 0.0">{{ repoBO.total_count }}</span>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="row" style="border-bottom:1px solid #EEE;">
+							<div class="col-sm-9">
+								<h4>{{repoBO.total_count || '0'}} repository results</h4>
+							</div>
+							<div class="col-sm-3">
+								<select name="singleSelect" class="form-control" ng-model="repo.filter" ng-change="update()">
+									<option value="BESTMATCH">Best Match</option>
+									<option value="MOSTSTAR">Most Star</option>
+									<option value="FEWESTSTAR">Fewest Star</option>
+									<option value="MOSTFORK">Most Fork</option>
+									<option value="FEWESTFORK">Fewest Fork</option>
+									<option value="RECENTLYUPDATE">Recently updated</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+
+
+								<ul style="list-style: none;padding-left: 0px;">
+									<li ng-repeat="item in repoBO.items" style="border-bottom:1px solid #EEE;">
+										<h3>
+											<a ui-sref="admin.users({name:item.owner.login})">{{item.full_name}}</a>
+											<span class="pull-right" style="font-size: 0.6em;margin-left: 40px;"><i class="fa fa-sm fa-star " aria-hidden="true"></i> {{(item.stargazers_count / Math.pow(10, 3)).toFixed(3)+"k"}}</span>
+											<span class="pull-right" style="font-size: 0.6em;">{{item.language}}</span>
+
+										</h3>
+										<p>{{item.description | limitTo: 80}} {{item.description.length > 80 ? '...' : ''}}</p>
+										<p style="font-size:0.8em;">Updated <time am-time-ago="item.updated_at"></time> </p>
+									</li>
+								</ul>
+								<ul ng-show="totalItems > 0" uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" max-size="maxSize" class="pagination-sm" ng-change="pageChanged(currentPage)" boundary-link-numbers="true" rotate="false"></ul>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<rd-widget>
+							<rd-widget-body>
+								<h4>Languages</h4>
+								<div class="table-responsive">
+									<table class="table">
+										<tbody>
+											<tr ng-repeat="tech in technologyList" style="cursor:pointer;cursor:hand;" ui-sref="admin.technolgy({code:tech.code})">
+												<td>
+													{{tech.name}}
+												</td>
+												<th>
+													{{tech.total || '--'}}
+												</th>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</rd-widget-body>
+						</rd-widget>
+					</div>
+				</div>
+			</rd-widget-body>
+		</rd-widget>
+
+
+	</div>
+</div>
