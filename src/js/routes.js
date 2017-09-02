@@ -7,7 +7,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider','$httpPro
 			return {
 				responseError: function(rejection) {
 					if(rejection.config.handleError && rejection.status === 403){
-						alert("bad response");
+						alert("403 error");
 					}
 					return rejection;
 				}
