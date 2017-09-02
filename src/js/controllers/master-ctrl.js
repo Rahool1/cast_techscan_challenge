@@ -4,7 +4,7 @@ angular.module('RDash')
 function MasterCtrl($scope, $cookieStore, $timeout, $q, apiService) {
 
 	$scope.init = function(){
-		// getTechListingListing();
+		getTechListingListing();
 	}
 
 	$scope.technologyList = [
