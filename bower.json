@@ -1,15 +1,5 @@
 {
-  "name": "rdash-angular",
-  "version": "0.0.1",
-  "description": "An AngularJS implementation of the responsive dashboard",
-  "homepage": "https://github.com/Ehesp/Responsive-Dashboard",
-  "authors": [
-    "Elliot Hesp <elliot.hesp@gmail.com>"
-  ],
-  "contributors": [
-    "Ricardo Pascua Jr <rdpascua@outlook.com>",
-    "Leonel Samayoa <leonel.e.samayoa@gmail.com>"
-  ],
+  "name": "cast_techscan_challenge",
   "main": "index.html",
   "license": "MIT",
   "ignore": [
@@ -29,9 +19,5 @@
     "font-awesome": "~4.5.0",
     "angular-moment": "^1.0.1",
     "angular-loading-bar": "^0.9.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rdash/rdash-angular"
   }
 }
